@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <title>Shop template</title>
+
+    <link rel="stylesheet" href="./index.css" />
+</head>
+
+<body>
+    <div>
+        <header>
+            <nav aria-label="Website navigation">
+                <ul role="list">
+                    <li>
+                        <a href="./women.html">Women</a>
+                    </li>
+
+                    <li>
+                        <a href="./men.html">Men</a>
+                    </li>
+
+                    <li>
+                        <a href="./kids.html">Kids</a>
+                    </li>
+
+                    <li>
+                        <a href="./company.html">Company</a>
+                    </li>
+                </ul> 
+            </nav>
+
+            <a href="./home.html">
+                <img 
+                    src="./assets/images/logo.png" 
+                    alt="" 
+                    width="139" 
+                    height="32" 
+                />
+            </a>
+
+            <nav aria-label="Personal navigation">
+                <ul role="list">
+                    <li>
+                        <a href="./account.html">Account</a>
+                    </li>
+
+                    <li>
+                        <a href="./search.html">Search</a>
+                    </li>
+
+                    <li>
+                        <a href="./cart.html">
+                            Cart (<span>0</span>)
+                        </a>
+                    </li>
+                </ul> 
+            </nav>
+        </header>
+
+        <nav aria-label="breadcrumb">
+            <ol role="list">
+                <li>
+                    <a href="./home.html">Home</a>
+                </li>
+
+                <li>
+                    <a href="./women.html">Women</a>
+                </li>
+
+                <li>
+                    <a href="#" aria-current="page">White unisex t-shirt</a>
+                </li>
+            </ol>
+        </nav>
+
+        <main>
+
+        <article aria-labelledby="heading-primary">
+            <section>
+                <img 
+                    src="./assets/images/card-main.png" 
+                    alt="Image of the selected t-shirt" 
+                    width="473" 
+                    height="707"
+                />
+
+                <section>
+                    <header>
+                        <h1 id="heading-primary">
+                            White unisex t-shirt
+                        </h1>
+
+                        <span>
+                            <abbr>CHF</abbr> <span>40</span>
+                        </span>
+
+                        <small>Tax included</small>
+                    </header>
+
+                    <form action="#">
+                        <fieldset>
+                            <legend>Size</legend>
+
+                            <div>
+                                <input 
+                                    type="radio" 
+                                    name="size-input" 
+                                    id="size-xs" 
+                                    value="xs" 
+                                />
+
+                                <label for="size-xs">
+                                    <abbr>XS</abbr>
+                                </label>
+                            </div>
+
+                            <div>
+                                <input 
+                                    type="radio" 
+                                    name="size-input" 
+                                    id="size-s" 
+                                    value="s"
+                                    checked="checked" 
+                                />
+
+                                <label for="size-s">
+                                    <abbr>S</abbr>
+                                </label>
+                            </div>
+
+                            <div>
+                                <input 
+                                    type="radio" 
+                                    name="size-input" 
+                                    id="size-m" 
+                                    value="m" 
+                                />
+
+                                <label for="size-m">
+                                    <abbr>M</abbr>
+                                </label>
+                            </div>
+
+                            <div>
+                                <input 
+                                    type="radio" 
+                                    name="size-input" 
+                                    id="size-l" 
+                                    value="l" 
+                                />
+
+                                <label for="size-l">
+                                    <abbr>L</abbr>
+                                </label>
+                            </div>
+
+                            <div>
+                                <input 
+                                    type="radio" 
+                                    name="size-input" 
+                                    id="size-xl" 
+                                    value="xl"
+                                    disabled 
+                                />
+
+                                <label for="size-xl">
+                                    <abbr>XL</abbr>
+                                </label>
+                            </div>
+
+                            <div>
+                                <input 
+                                    type="radio" 
+                                    name="size-input" 
+                                    id="size-2xl" 
+                                    value="2xl"
+                                    disabled 
+                                />
+
+                                <label for="size-2xl">
+                                    <abbr>2XL</abbr>
+                                </label>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>
+                                Color - <span>White</span>
+                            </legend>
+
+                            <div>
+                                <input 
+                                    type="radio" 
+                                    name="color-input" 
+                                    id="color-white" 
+                                    value="white"
+                                    checked="checked" 
+                                />
+
+                                <label for="color-white" aria-label="White color input">
+                                </label>
+
+                                <span>White</span>
+                            </div>
+
+                            <div>
+                                <input 
+                                    type="radio" 
+                                    name="color-input" 
+                                    id="color-black" 
+                                    value="black"
+                                />
+
+                                <label for="color-black" aria-label="Black color input">
+                                </label>
+
+                                <span>Black</span>
+                            </div>
+
+                            <div>
+                                <input 
+                                    type="radio" 
+                                    name="color-input" 
+                                    id="color-gray-latte" 
+                                    value="gray-latte"
+                                />
+
+                                <label for="color-gray-latte" aria-label="Gray latte color input">
+                                </label>
+
+                                <span>Gray latte</span>
+                            </div>
+
+                            <div>
+                                <input 
+                                    type="radio" 
+                                    name="color-input" 
+                                    id="color-purple-latte" 
+                                    value="purple-latte"
+                                />
+
+                                <label for="color-purple-latte" aria-label="Purple latte color input">
+                                </label>
+
+                                <span>Purple latte</span>
+                            </div>
+
+                            <div>
+                                <input 
+                                    type="radio" 
+                                    name="color-input" 
+                                    id="color-pink-latte" 
+                                    value="pink-latte"
+                                />
+
+                                <label for="color-pink-latte" aria-label="Pink latte color input">
+                                </label>
+
+                                <span>Pink latte</span>
+                            </div>
+
+                            <div>
+                                <input 
+                                    type="radio" 
+                                    name="color-input" 
+                                    id="color-orange-latte" 
+                                    value="orange-latte"
+                                />
+
+                                <label for="color-orange-latte" aria-label="Orange latte color input">
+                                </label>
+
+                                <span>Orange latte</span>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Quantity</legend>
+
+                            <button type="button">-</button>
+
+                            <input 
+                                type="number"
+                                name="quantity-input" 
+                                value="1" 
+                                min="1" 
+                            />
+
+                            <button type="button">+</button>
+                        </fieldset>
+
+                        <button type="button">Add to card</button>
+
+                        <button type="submit">Buy it now</button>
+                    </form>
+
+                    <footer>
+                        <p>
+                            A unisex basic garment with a loose fit. Light and comfortable to your skin.
+                        </p>
+
+                        <p>
+                            Certification of cotton - <abbr>GOTS</abbr>
+                        </p>
+                    </footer>
+                </section>
+            </section>
+
+            <section aria-label="additional information">
+                <ul role="list">
+                    <li>
+                        <article aria-labelledby="tab-heading-1">
+                            <div>
+                                <h2 id="tab-heading-1">Sizing & Fit</h2>
+
+                                <button type="button"></button> <!-- Icon will be added by background-image -->
+                            </div>
+
+                            <p>
+                                Olga is 175<abbr>cm</abbr>, she is wearing a size <abbr>S</abbr>.
+                            </p>
+                        </article>
+                    </li>
+
+                    <li>
+                        <article aria-labelledby="tab-heading-2">
+                            <div>
+                                <h2 id="tab-heading-2">Composition & Care</h2>
+
+                                <button type="button"></button>
+                            </div>
+                        </article>
+                    </li>
+
+                    <li>
+                        <article aria-labelledby="tab-heading-3">
+                            <div>
+                                <h2 id="tab-heading-3">Delivery & Returns</h2>
+
+                                <button type="button"></button>
+                            </div>
+                        </article>
+                    </li>
+                </ul>
+            </section>    
+        </article>
+
+        </main>
+
+        <aside aria-labelledby="heading-secondary">
+            <h2 id="heading-secondary">You may also like</h2>
+
+            <ul role="list">
+                <li>
+                    <article aria-labelledby="card-heading-1">
+                        <img 
+                            src="./assets/images/card-aside-1.png"
+                            alt="Image of the white woman hoodie"
+                            width="248" 
+                            height="368"
+                        />
+
+                        <h3>
+                            <a href="./product-1.html" id="card-heading-1">
+                                Product name
+                            </a>
+                        </h3>
+
+                        <ul role="list">
+                            <li aria-label="Brown latte color available"></li>
+
+                            <li aria-label="Orange latte color available"></li>
+
+                            <li aria-label="Pink latte color available"></li>
+
+                            <li aria-label="Purple latte color available"></li>
+                        </ul>
+
+                        <span>
+                            <abbr>CHF</abbr> <span>40</span>
+                        </span>
+                    </article>
+                </li>
+
+                <li>
+                    <article aria-labelledby="card-heading-2">
+                        <img 
+                            src="./assets/images/card-aside-2.png"
+                            alt="Image of the man t-shirt"
+                            width="248" 
+                            height="368"
+                        />
+
+                        <h3>
+                            <a href="./product-2.html" id="card-heading-2">
+                                Product name
+                            </a>
+                        </h3>
+
+                        <ul role="list">
+                            <li aria-label="Brown latte color available"></li>
+
+                            <li aria-label="Orange latte color available"></li>
+
+                            <li aria-label="Pink latte color available"></li>
+
+                            <li aria-label="Purple latte color available"></li>
+                        </ul>
+
+                        <span>
+                            <abbr>CHF</abbr> <span>40</span>
+                        </span>
+                    </article>
+                </li>
+
+                <li>
+                    <article aria-labelledby="card-heading-3">
+                        <ul role="list">
+                            <li>
+                                <span>Sold out</span>
+                            </li>
+                        </ul>
+
+                        <img 
+                            src="./assets/images/card-aside-3.png"
+                            alt="Image of the woman hoodie"
+                            width="248" 
+                            height="368"
+                        />
+
+                        <h3>
+                            <a href="./product-3.html" id="card-heading-3">
+                                Product name
+                            </a>
+                        </h3>
+
+                        <ul role="list">
+                            <li aria-label="Brown latte color available"></li>
+
+                            <li aria-label="Orange latte color available"></li>
+
+                            <li aria-label="Pink latte color available"></li>
+
+                            <li aria-label="Purple latte color available"></li>
+                        </ul>
+
+                        <span>
+                            <abbr>CHF</abbr> <span>40</span>
+                        </span>
+                    </article>
+                </li>
+
+                <li>
+                    <article aria-labelledby="card-heading-4">
+                        <img 
+                            src="./assets/images/card-aside-4.png"
+                            alt="Image of the womam hoodie"
+                            width="248" 
+                            height="368"
+                        />
+
+                        <h3>
+                            <a href="./product-4.html" id="card-heading-4">
+                                Product name
+                            </a>
+                        </h3>
+
+                        <ul role="list">
+                            <li aria-label="Brown latte color available"></li>
+
+                            <li aria-label="Orange latte color available"></li>
+
+                            <li aria-label="Pink latte color available"></li>
+
+                            <li aria-label="Purple latte color available"></li>
+                        </ul>
+
+                        <span>
+                            <abbr>CHF</abbr> <span>40</span>
+                        </span>
+                    </article>
+                </li>
+            </ul>
+        </aside>
+
+        <footer>
+            <ul role="list">
+                <li>
+                    <article aria-labelledby="footer-heading-1">
+                        <h2 id="footer-heading-1">About</h2>
+
+                        <address>
+                            Susparsa Store
+                            <br>
+                            Geneva, Switzerland
+                        </address>
+
+                        <ul role="list">
+                            <li>
+                                <a href="https://www.facebook.com">
+                                    <img 
+                                        src="./assets/images/icons/facebook-icon.png"
+                                        alt="Icon of the facebook and it's link"
+                                        width="9"
+                                        height="19"
+                                    />
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="https://www.instagram.com">
+                                    <img 
+                                        src="./assets/images/icons/instagram-icon.png"
+                                        alt="Icon of the instagram and it's link"
+                                        width="19"
+                                        height="19"
+                                    />
+                                </a>
+                            </li>
+                        </ul>
+                    </article>
+                </li>
+
+                <li>
+                    <article>
+                        <h2>Company</h2>
+
+                        <nav aria-label="Website navigation">
+                            <ul role="list">
+                                <li>
+                                    <a href="./women.html">Women</a>
+                                </li>
+
+                                <li>
+                                    <a href="./men.html">Men</a>
+                                </li>
+
+                                <li>
+                                    <a href="./kids.html">Kids</a>
+                                </li>
+
+                                <li>
+                                    <a href="./about-us.html">About Us</a>
+                                </li>
+
+                                <li>
+                                    <a href="./our-materials.html">Our Materials</a>
+                                </li> 
+                            </ul>
+                        </nav>
+                    </article>
+                </li>
+
+                <li>
+                    <article aria-labelledby="footer-heading-2">
+                        <h2 id="footer-heading-2">Useful Links</h2>
+
+                        <nav>
+                            <ul role="list">
+                                <li>
+                                    <a href="./privacy-policy.html">Privacy Policy</a>
+                                </li>
+
+                                <li>
+                                    <a href="./shipping-policy.html">Shipping Policy</a>
+                                </li>
+
+                                <li>
+                                    <a href="./return-refund-policy.html">Return & Refund Policy</a>
+                                </li>
+
+                                <li>
+                                    <a href="./terms-of-service.html">Terms of Service </a>
+                                </li>
+
+                                <li>
+                                    <a href="./contact-us.html">Contact Us</a>
+                                </li> 
+                            </ul>
+                        </nav>
+                    </article>
+                </li>
+            </ul>
+
+            <small>© Susparsa 2021</small>
+        </footer>
+    </div>
+</body>
+</html>
