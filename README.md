@@ -1,2 +1,2 @@
 # Susparsa
-https://susparsa-deploy.netlify.app
+https://susparsa-deploy-yury-andrush.netlify.app
