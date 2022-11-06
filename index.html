@@ -11,581 +11,701 @@
 </head>
 
 <body>
-    <div>
-        <header>
-            <nav aria-label="Website navigation">
-                <ul role="list">
-                    <li>
-                        <a href="./women.html">Women</a>
-                    </li>
-
-                    <li>
-                        <a href="./men.html">Men</a>
-                    </li>
-
-                    <li>
-                        <a href="./kids.html">Kids</a>
-                    </li>
-
-                    <li>
-                        <a href="./company.html">Company</a>
-                    </li>
-                </ul> 
-            </nav>
-
-            <a href="./home.html">
-                <img 
-                    src="./assets/images/logo.png" 
-                    alt="" 
-                    width="139" 
-                    height="32" 
-                />
-            </a>
-
-            <nav aria-label="Personal navigation">
-                <ul role="list">
-                    <li>
-                        <a href="./account.html">Account</a>
-                    </li>
-
-                    <li>
-                        <a href="./search.html">Search</a>
-                    </li>
-
-                    <li>
-                        <a href="./cart.html">
-                            Cart (<span>0</span>)
-                        </a>
-                    </li>
-                </ul> 
-            </nav>
-        </header>
-
-        <nav aria-label="breadcrumb">
-            <ol role="list">
+    <header class="header wrapper">
+        <nav class="header__navigation header__navigation--primary" aria-label="Website navigation">
+            <ul class="list header__list header__list--primary" role="list">
                 <li>
-                    <a href="./home.html">Home</a>
+                    <a class="link" href="./women.html">Women</a>
                 </li>
 
                 <li>
-                    <a href="./women.html">Women</a>
+                    <a class="link" href="./men.html">Men</a>
                 </li>
 
                 <li>
-                    <a href="#" aria-current="page">White unisex t-shirt</a>
+                    <a class="link" href="./kids.html">Kids</a>
                 </li>
-            </ol>
+
+                <li>
+                    <a class="link" href="./company.html">Company</a>
+                </li>
+            </ul> 
         </nav>
 
-        <main>
+        <a class="header__logo" href="./home.html">
+            <img 
+                src="./assets/images/logo.svg" 
+                alt="" 
+                width="139" 
+                height="32"
+                class="image header__image" 
+            />
+        </a>
 
-        <article aria-labelledby="heading-primary">
-            <section>
-                <img 
-                    src="./assets/images/card-main.png" 
-                    alt="Image of the selected t-shirt" 
-                    width="473" 
-                    height="707"
-                />
+        <nav class="header__navigation header__navigation--secondary" aria-label="Personal navigation">
+            <ul class="list header__list header__list--secondary" role="list">
+                <li>
+                    <a class="link" href="./account.html">Account</a>
+                </li>
 
-                <section>
-                    <header>
-                        <h1 id="heading-primary">
-                            White unisex t-shirt
-                        </h1>
+                <li>
+                    <a class="link" href="./search.html">Search</a>
+                </li>
 
-                        <span>
-                            <abbr>CHF</abbr> <span>40</span>
-                        </span>
+                <li>
+                    <a class="link" href="./cart.html">
+                        Cart (<span>0</span>)
+                    </a>
+                </li>
+            </ul> 
+        </nav>
+    </header>
 
-                        <small>Tax included</small>
-                    </header>
+    <hr class="break" />
 
-                    <form action="#">
-                        <fieldset>
-                            <legend>Size</legend>
+    <nav aria-label="breadcrumb" class="breadcrumb wrapper">
+        <ol class="list breadcrumb__list" role="list">
+            <li class="breadcrumb__item">
+                <a class="link" href="./home.html">Home</a>
+            </li>
 
-                            <div>
-                                <input 
-                                    type="radio" 
-                                    name="size-input" 
-                                    id="size-xs" 
-                                    value="xs" 
-                                />
+            <li class="breadcrumb__item">
+                <a class="link" href="./women.html">Women</a>
+            </li>
 
-                                <label for="size-xs">
-                                    <abbr>XS</abbr>
-                                </label>
-                            </div>
+            <li class="breadcrumb__item breadcrumb__item--active">
+                <a class="link" href="#" aria-current="page">White unisex t-shirt</a>
+            </li>
+        </ol>
+    </nav>
 
-                            <div>
-                                <input 
-                                    type="radio" 
-                                    name="size-input" 
-                                    id="size-s" 
-                                    value="s"
-                                    checked="checked" 
-                                />
+    <main>
 
-                                <label for="size-s">
-                                    <abbr>S</abbr>
-                                </label>
-                            </div>
+    <article aria-labelledby="heading-primary" class="product wrapper">
+        <div class="product__group">
+            <section class="description product__description">
+                <header class="description__section description__section--top">
+                    <h1 class="heading description__heading" id="heading-primary">
+                        White unisex t-shirt
+                    </h1>
 
-                            <div>
-                                <input 
-                                    type="radio" 
-                                    name="size-input" 
-                                    id="size-m" 
-                                    value="m" 
-                                />
+                    <span class="description__caption">
+                        <abbr>CHF</abbr> <span>40</span>
+                    </span>
 
-                                <label for="size-m">
-                                    <abbr>M</abbr>
-                                </label>
-                            </div>
+                    <small class="description__note">Tax included</small>
+                </header>
 
-                            <div>
-                                <input 
-                                    type="radio" 
-                                    name="size-input" 
-                                    id="size-l" 
-                                    value="l" 
-                                />
+                <form action="#" class="form description__section">
+                    <fieldset class="fieldset form__filter">
+                        <legend class="form__legend">Size</legend>
 
-                                <label for="size-l">
-                                    <abbr>L</abbr>
-                                </label>
-                            </div>
-
-                            <div>
-                                <input 
-                                    type="radio" 
-                                    name="size-input" 
-                                    id="size-xl" 
-                                    value="xl"
-                                    disabled 
-                                />
-
-                                <label for="size-xl">
-                                    <abbr>XL</abbr>
-                                </label>
-                            </div>
-
-                            <div>
-                                <input 
-                                    type="radio" 
-                                    name="size-input" 
-                                    id="size-2xl" 
-                                    value="2xl"
-                                    disabled 
-                                />
-
-                                <label for="size-2xl">
-                                    <abbr>2XL</abbr>
-                                </label>
-                            </div>
-                        </fieldset>
-
-                        <fieldset>
-                            <legend>
-                                Color - <span>White</span>
-                            </legend>
-
-                            <div>
-                                <input 
-                                    type="radio" 
-                                    name="color-input" 
-                                    id="color-white" 
-                                    value="white"
-                                    checked="checked" 
-                                />
-
-                                <label for="color-white" aria-label="White color input">
-                                </label>
-
-                                <span>White</span>
-                            </div>
-
-                            <div>
-                                <input 
-                                    type="radio" 
-                                    name="color-input" 
-                                    id="color-black" 
-                                    value="black"
-                                />
-
-                                <label for="color-black" aria-label="Black color input">
-                                </label>
-
-                                <span>Black</span>
-                            </div>
-
-                            <div>
-                                <input 
-                                    type="radio" 
-                                    name="color-input" 
-                                    id="color-gray-latte" 
-                                    value="gray-latte"
-                                />
-
-                                <label for="color-gray-latte" aria-label="Gray latte color input">
-                                </label>
-
-                                <span>Gray latte</span>
-                            </div>
-
-                            <div>
-                                <input 
-                                    type="radio" 
-                                    name="color-input" 
-                                    id="color-purple-latte" 
-                                    value="purple-latte"
-                                />
-
-                                <label for="color-purple-latte" aria-label="Purple latte color input">
-                                </label>
-
-                                <span>Purple latte</span>
-                            </div>
-
-                            <div>
-                                <input 
-                                    type="radio" 
-                                    name="color-input" 
-                                    id="color-pink-latte" 
-                                    value="pink-latte"
-                                />
-
-                                <label for="color-pink-latte" aria-label="Pink latte color input">
-                                </label>
-
-                                <span>Pink latte</span>
-                            </div>
-
-                            <div>
-                                <input 
-                                    type="radio" 
-                                    name="color-input" 
-                                    id="color-orange-latte" 
-                                    value="orange-latte"
-                                />
-
-                                <label for="color-orange-latte" aria-label="Orange latte color input">
-                                </label>
-
-                                <span>Orange latte</span>
-                            </div>
-                        </fieldset>
-
-                        <fieldset>
-                            <legend>Quantity</legend>
-
-                            <button type="button">-</button>
-
+                        <div>
                             <input 
-                                type="number"
-                                name="quantity-input" 
-                                value="1" 
-                                min="1" 
+                                type="radio" 
+                                name="size-input" 
+                                id="size-xs" 
+                                value="xs"
+                                class="form__input visually-hidden" 
                             />
 
-                            <button type="button">+</button>
-                        </fieldset>
+                            <label for="size-xs" class="form__label">
+                                <abbr>XS</abbr>
+                            </label>
+                        </div>
 
-                        <button type="button">Add to card</button>
+                        <div>
+                            <input 
+                                type="radio" 
+                                name="size-input" 
+                                id="size-s" 
+                                value="s"
+                                checked="checked"
+                                class="form__input visually-hidden" 
+                            />
 
-                        <button type="submit">Buy it now</button>
-                    </form>
+                            <label for="size-s" class="form__label">
+                                <abbr>S</abbr>
+                            </label>
+                        </div>
 
-                    <footer>
-                        <p>
-                            A unisex basic garment with a loose fit. Light and comfortable to your skin.
-                        </p>
+                        <div>
+                            <input 
+                                type="radio" 
+                                name="size-input" 
+                                id="size-m" 
+                                value="m"
+                                class="form__input visually-hidden" 
+                            />
 
-                        <p>
-                            Certification of cotton - <abbr>GOTS</abbr>
-                        </p>
-                    </footer>
-                </section>
+                            <label for="size-m" class="form__label">
+                                <abbr>M</abbr>
+                            </label>
+                        </div>
+
+                        <div>
+                            <input 
+                                type="radio" 
+                                name="size-input" 
+                                id="size-l" 
+                                value="l"
+                                class="form__input visually-hidden" 
+                            />
+
+                            <label for="size-l" class="form__label">
+                                <abbr>L</abbr>
+                            </label>
+                        </div>
+
+                        <div>
+                            <input 
+                                type="radio" 
+                                name="size-input" 
+                                id="size-xl" 
+                                value="xl"
+                                class="form__input visually-hidden"
+                            />
+
+                            <label for="size-xl" class="form__label">
+                                <abbr>XL</abbr>
+                            </label>
+                        </div>
+
+                        <div>
+                            <input 
+                                type="radio" 
+                                name="size-input" 
+                                id="size-2xl" 
+                                value="2xl"
+                                disabled="disabled" 
+                                class="form__input visually-hidden"
+                            />
+
+                            <label for="size-2xl" class="form__label">
+                                <abbr>2XL</abbr>
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="fieldset form__filter form__filter--colored">
+                        <legend class="form__legend">
+                            Color - <span class="form__indicator">White</span>
+                        </legend>
+
+                        <div class="form__item form__item--white">
+                            <input 
+                                type="radio" 
+                                name="color-input" 
+                                id="color-white" 
+                                value="white"
+                                checked="checked"
+                                class="form__input visually-hidden" 
+                            />
+
+                            <label 
+                                for="color-white"
+                                data-tooltip="White" 
+                                class="form__label form__label--colored"
+                            >
+                                <span class="visually-hidden">White color</span>
+                            </label>
+                        </div>
+
+                        <div class="form__item form__item--black">
+                            <input 
+                                type="radio" 
+                                name="color-input" 
+                                id="color-black" 
+                                value="black"
+                                class="form__input visually-hidden"
+                            />
+
+                            <label 
+                                for="color-black" 
+                                data-tooltip="Black"
+                                class="form__label form__label--colored"
+                            >
+                                <span class="visually-hidden">Black color</span>
+                            </label>
+                        </div>
+
+                        <div class="form__item form__item--gray">
+                            <input 
+                                type="radio" 
+                                name="color-input" 
+                                id="color-gray-latte" 
+                                value="gray-latte"
+                                class="form__input visually-hidden"
+                            />
+
+                            <label 
+                                for="color-gray-latte"
+                                data-tooltip="Gray latte" 
+                                class="form__label form__label--colored"
+                            >
+                                <span class="visually-hidden">Gray latte color</span>
+                            </label>
+                        </div>
+
+                        <div class="form__item form__item--purple">
+                            <input 
+                                type="radio" 
+                                name="color-input" 
+                                id="color-purple-latte" 
+                                value="purple-latte"
+                                class="form__input visually-hidden"
+                            />
+
+                            <label 
+                                for="color-purple-latte" 
+                                data-tooltip="Purple latte"
+                                class="form__label form__label--colored"
+                            >
+                                <span class="visually-hidden">Purple latte color</span>
+                            </label>
+                        </div>
+
+                        <div class="form__item form__item--pink">
+                            <input 
+                                type="radio" 
+                                name="color-input" 
+                                id="color-pink-latte" 
+                                value="pink-latte"
+                                disabled="disabled"
+                                class="form__input visually-hidden"
+                            />
+
+                            <label 
+                                for="color-pink-latte" 
+                                data-tooltip="Pink latte"
+                                class="form__label form__label--colored"
+                            >
+                                <span class="visually-hidden">Pink latte color</span>
+                            </label>
+                        </div>
+
+                        <div class="form__item form__item--orange">
+                            <input 
+                                type="radio" 
+                                name="color-input" 
+                                id="color-orange-latte" 
+                                value="orange-latte"
+                                disabled="disabled"
+                                class="form__input visually-hidden"
+                            />
+
+                            <label 
+                                for="color-orange-latte" 
+                                data-tooltip="Orange latte"
+                                class="form__label form__label--colored"
+                            >
+                                <span class="visually-hidden">Orange latte color</span>
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="fieldset counter">
+                        <legend class="form__legend">Quantity</legend>
+                        
+                        <input 
+                            type="number"
+                            name="quantity-input" 
+                            value="1" 
+                            min="1" 
+                            class="input-number counter__input" 
+                        />
+
+                        <button type="button" class="button counter__button counter__button--decrease">
+                            −
+                        </button>
+
+                        <button type="button" class="button counter__button counter__button--increase">
+                            +
+                        </button>
+                    </fieldset>
+
+                    <div class="form__button-group">
+                        <button 
+                            type="submit" 
+                            name="action" 
+                            value="add"
+                            class="button form__button form__button--secondary"
+                        >
+                            Add to card
+                        </button>
+
+                        <button 
+                            type="submit" 
+                            name="action" 
+                            value="quick-buy"
+                            class="button form__button form__button--primary"
+                        >
+                            Buy it now
+                        </button>
+                    </div>
+                </form>
+
+                <footer class="description__section description__section--bottom">
+                    <p class="paragraph description__paragraph">
+                        A unisex basic garment with a loose fit. Light and comfortable to your skin.
+                    </p>
+
+                    <p class="paragraph description__paragraph">
+                        Certification of cotton - <abbr>GOTS</abbr>
+                    </p>
+                </footer>
             </section>
 
-            <section aria-label="additional information">
-                <ul role="list">
-                    <li>
-                        <article aria-labelledby="tab-heading-1">
-                            <div>
-                                <h2 id="tab-heading-1">Sizing & Fit</h2>
+            <picture class="product__illustration">
+                <source
+                    type="image/webp" 
+                    srcset="./assets/images/card-main.webp"
+                />
 
-                                <button type="button"></button> <!-- Icon will be added by background-image -->
-                            </div>
+                <img 
+                    src="./assets/images/card-main.png" 
+                    alt="Image of the selected t-shirt"
+                    width="473" 
+                    height="707"
+                    class="image product__image"
+                />
+            </picture>
+        </div>
 
-                            <p>
-                                Olga is 175<abbr>cm</abbr>, she is wearing a size <abbr>S</abbr>.
-                            </p>
-                        </article>
-                    </li>
+        <ul class="list product__accordions" role="list">
+            <li class="accordion">
+                <details open="open" class="accordion__body">
+                    <summary class="accordion__summary">Sizing & Fit</summary>
 
-                    <li>
-                        <article aria-labelledby="tab-heading-2">
-                            <div>
-                                <h2 id="tab-heading-2">Composition & Care</h2>
+                    <div class="accordion__content">
+                        <p class="paragraph">
+                            Olga is 175<abbr>cm</abbr>, she is wearing a size <abbr>S</abbr>.
+                        </p>
+                    </div>
+                </details>
+            </li>
 
-                                <button type="button"></button>
-                            </div>
-                        </article>
-                    </li>
+            <li class="accordion">
+                <details class="accordion__body">
+                    <summary class="accordion__summary">Composition & Care</summary>
 
-                    <li>
-                        <article aria-labelledby="tab-heading-3">
-                            <div>
-                                <h2 id="tab-heading-3">Delivery & Returns</h2>
+                    <div class="accordion__content">
+                        <p class="paragraph">Some text here.</p>
+                    </div>
+                </details>
+            </li>
 
-                                <button type="button"></button>
-                            </div>
-                        </article>
-                    </li>
-                </ul>
-            </section>    
-        </article>
+            <li class="accordion">
+                <details class="accordion__body">
+                    <summary class="accordion__summary">Delivery & Returns</summary>
 
-        </main>
+                    <div class="accordion__content">
+                        <p class="paragraph">Some text here.</p>
+                    </div>
+                </details> 
+            </li>
+        </ul>
+    </article>
+    </main>
 
-        <aside aria-labelledby="heading-secondary">
-            <h2 id="heading-secondary">You may also like</h2>
+    <aside aria-labelledby="heading-secondary" class="aside wrapper">
+        <h2 id="heading-secondary" class="heading aside__heading">
+            You may also like
+        </h2>
 
-            <ul role="list">
-                <li>
-                    <article aria-labelledby="card-heading-1">
+        <ul class="list cards" role="list">
+            <li>
+                <article aria-labelledby="card-heading-1" class="card">
+                    <picture>
+                        <source
+                            type="image/webp" 
+                            srcset="./assets/images/card-aside-1.webp"
+                        />
+
                         <img 
                             src="./assets/images/card-aside-1.png"
-                            alt="Image of the white woman hoodie"
+                            alt="Image of the pink woman hoodie"
                             width="248" 
                             height="368"
+                            class="image card__image" 
+                        />
+                    </picture>
+
+                    <h3 class="heading card__heading" id="card-heading-1">
+                        <a class="link card__link" href="./product-1.html">
+                            Product name
+                        </a>
+                    </h3>
+
+                    <ul class="list card__list" role="list">
+                        <li class="card__item card__item--brown">
+                            <span class="visually-hidden">Brown latte color available</span>
+                        </li>
+
+                        <li class="card__item card__item--orange">
+                            <span class="visually-hidden">Orange latte color available</span>
+                        </li>
+
+                        <li class="card__item card__item--pink">
+                            <span class="visually-hidden">Pink latte color available</span>
+                        </li>
+
+                        <li class="card__item card__item--purple">
+                            <span class="visually-hidden">Purple color available</span>
+                        </li>
+                    </ul>
+
+                    <span>
+                        <abbr>CHF</abbr> <span>40</span>
+                    </span>
+                </article>
+            </li>
+
+            <li>
+                <article aria-labelledby="card-heading-2" class="card">
+                    <picture>
+                        <source
+                            type="image/webp" 
+                            srcset="./assets/images/card-aside-2.webp"
                         />
 
-                        <h3>
-                            <a href="./product-1.html" id="card-heading-1">
-                                Product name
-                            </a>
-                        </h3>
-
-                        <ul role="list">
-                            <li aria-label="Brown latte color available"></li>
-
-                            <li aria-label="Orange latte color available"></li>
-
-                            <li aria-label="Pink latte color available"></li>
-
-                            <li aria-label="Purple latte color available"></li>
-                        </ul>
-
-                        <span>
-                            <abbr>CHF</abbr> <span>40</span>
-                        </span>
-                    </article>
-                </li>
-
-                <li>
-                    <article aria-labelledby="card-heading-2">
                         <img 
                             src="./assets/images/card-aside-2.png"
-                            alt="Image of the man t-shirt"
+                            alt="Image of the man blue t-shirt"
                             width="248" 
                             height="368"
+                            class="image card__image" 
                         />
+                    </picture>
 
-                        <h3>
-                            <a href="./product-2.html" id="card-heading-2">
-                                Product name
-                            </a>
-                        </h3>
+                    <h3 class="heading card__heading" id="card-heading-2">
+                        <a class="link card__link" href="./product-2.html">
+                            Product name
+                        </a>
+                    </h3>
 
-                        <ul role="list">
-                            <li aria-label="Brown latte color available"></li>
+                    <ul class="list card__list" role="list">
+                        <li class="card__item card__item--brown">
+                            <span class="visually-hidden">Brown latte color available</span>
+                        </li>
 
-                            <li aria-label="Orange latte color available"></li>
+                        <li class="card__item card__item--orange">
+                            <span class="visually-hidden">Orange latte color available</span>
+                        </li>
 
-                            <li aria-label="Pink latte color available"></li>
+                        <li class="card__item card__item--pink">
+                            <span class="visually-hidden">Pink latte color available</span>
+                        </li>
 
-                            <li aria-label="Purple latte color available"></li>
-                        </ul>
+                        <li class="card__item card__item--purple">
+                            <span class="visually-hidden">Purple color available</span>
+                        </li>
+                    </ul>
 
-                        <span>
-                            <abbr>CHF</abbr> <span>40</span>
-                        </span>
-                    </article>
-                </li>
+                    <span>
+                        <abbr>CHF</abbr> <span>40</span>
+                    </span>
+                </article>
+            </li>
 
-                <li>
-                    <article aria-labelledby="card-heading-3">
-                        <ul role="list">
-                            <li>
-                                <span>Sold out</span>
-                            </li>
-                        </ul>
+            <li>
+                <article aria-labelledby="card-heading-3" class="card">
+                    <ul class="list tags card__tags" role="list">
+                        <li class="tags__item">
+                            <span>Sold out</span>
+                        </li>
+                    </ul>
+
+                    <picture>
+                        <source
+                            type="image/webp" 
+                            srcset="./assets/images/card-aside-3.webp"
+                        />
 
                         <img 
                             src="./assets/images/card-aside-3.png"
-                            alt="Image of the woman hoodie"
+                            alt="Image of the woman green hoodie"
                             width="248" 
                             height="368"
+                            class="image card__image" 
+                        />
+                    </picture>
+
+                    <h3 class="heading card__heading" id="card-heading-3">
+                        <a class="link card__link" href="./product-3.html">
+                            Product name
+                        </a>
+                    </h3>
+
+                    <ul class="list card__list" role="list">
+                        <li class="card__item card__item--brown">
+                            <span class="visually-hidden">Brown latte color available</span>
+                        </li>
+
+                        <li class="card__item card__item--orange">
+                            <span class="visually-hidden">Orange latte color available</span>
+                        </li>
+
+                        <li class="card__item card__item--pink">
+                            <span class="visually-hidden">Pink latte color available</span>
+                        </li>
+
+                        <li class="card__item card__item--purple">
+                            <span class="visually-hidden">Purple color available</span>
+                        </li>
+                    </ul>
+
+                    <span>
+                        <abbr>CHF</abbr> <span>40</span>
+                    </span>
+                </article>
+            </li>
+
+            <li>
+                <article aria-labelledby="card-heading-4" class="card">
+                    <picture>
+                        <source
+                            type="image/webp" 
+                            srcset="./assets/images/card-aside-4.webp"
                         />
 
-                        <h3>
-                            <a href="./product-3.html" id="card-heading-3">
-                                Product name
-                            </a>
-                        </h3>
-
-                        <ul role="list">
-                            <li aria-label="Brown latte color available"></li>
-
-                            <li aria-label="Orange latte color available"></li>
-
-                            <li aria-label="Pink latte color available"></li>
-
-                            <li aria-label="Purple latte color available"></li>
-                        </ul>
-
-                        <span>
-                            <abbr>CHF</abbr> <span>40</span>
-                        </span>
-                    </article>
-                </li>
-
-                <li>
-                    <article aria-labelledby="card-heading-4">
                         <img 
                             src="./assets/images/card-aside-4.png"
-                            alt="Image of the womam hoodie"
+                            alt="Image of the woman black hoodie"
                             width="248" 
                             height="368"
+                            class="image card__image" 
                         />
+                    </picture>
 
-                        <h3>
-                            <a href="./product-4.html" id="card-heading-4">
-                                Product name
+                    <h3 class="heading card__heading" id="card-heading-4">
+                        <a class="link card__link" href="./product-4.html">
+                            Product name
+                        </a>
+                    </h3>
+
+                    <ul class="list card__list" role="list">
+                        <li class="card__item card__item--brown">
+                            <span class="visually-hidden">Brown latte color available</span>
+                        </li>
+
+                        <li class="card__item card__item--orange">
+                            <span class="visually-hidden">Orange latte color available</span>
+                        </li>
+
+                        <li class="card__item card__item--pink">
+                            <span class="visually-hidden">Pink latte color available</span>
+                        </li>
+
+                        <li class="card__item card__item--purple">
+                            <span class="visually-hidden">Purple color available</span>
+                        </li>
+                    </ul>
+
+                    <span>
+                        <abbr>CHF</abbr> <span>40</span>
+                    </span>
+                </article>
+            </li>
+        </ul>
+    </aside>
+
+    <hr class="break" />
+
+    <footer class="footer wrapper">
+        <div class="footer__container">
+            <section class="footer__section">
+                <h2 class="heading footer__heading">About</h2>
+
+                <address class="footer__address">
+                    <p>
+                        Susparsa Store
+                        <br>
+                        Geneva, Switzerland
+                    </p>
+            
+                    <ul class="list socials footer__socials" role="list">
+                        <li>
+                            <a href="https://www.facebook.com">
+                                <img 
+                                    src="./assets/images/icons/facebook-icon.svg"
+                                    alt="Icon of the facebook and it's link"
+                                    width="9"
+                                    height="19"
+                                    class="image" 
+                                />
                             </a>
-                        </h3>
+                        </li>
 
-                        <ul role="list">
-                            <li aria-label="Brown latte color available"></li>
+                        <li>
+                            <a href="https://www.instagram.com">
+                                <img 
+                                    src="./assets/images/icons/instagram-icon.svg"
+                                    alt="Icon of the instagram and it's link"
+                                    width="19"
+                                    height="19"
+                                    class="image" 
+                                />
+                            </a>
+                        </li>
+                    </ul>
+                </address>
+            </section>
 
-                            <li aria-label="Orange latte color available"></li>
+            <section class="footer__section">
+                <h2 class="heading footer__heading">Company</h2>
 
-                            <li aria-label="Pink latte color available"></li>
+                <ul class="list" role="list">
+                    <li>
+                        <a class="link" href="./women.html">Women</a>
+                    </li>
 
-                            <li aria-label="Purple latte color available"></li>
-                        </ul>
+                    <li>
+                        <a class="link" href="./men.html">Men</a>
+                    </li>
 
-                        <span>
-                            <abbr>CHF</abbr> <span>40</span>
-                        </span>
-                    </article>
-                </li>
-            </ul>
-        </aside>
+                    <li>
+                        <a class="link" href="./kids.html">Kids</a>
+                    </li>
 
-        <footer>
-            <ul role="list">
-                <li>
-                    <section>
-                        <h2>About</h2>
+                    <li>
+                        <a class="link" href="./about-us.html">About Us</a>
+                    </li>
 
-                        <address>
-                            <p>
-                                Susparsa Store
-                                <br>
-                                Geneva, Switzerland
-                            </p>
-                    
-                            <ul role="list">
-                                <li>
-                                    <a href="https://www.facebook.com">
-                                        <img 
-                                            src="./assets/images/icons/facebook-icon.png"
-                                            alt="Icon of the facebook and it's link"
-                                            width="9"
-                                            height="19"
-                                        />
-                                    </a>
-                                </li>
+                    <li>
+                        <a class="link" href="./our-materials.html">Our Materials</a>
+                    </li> 
+                </ul>
+            </section>
 
-                                <li>
-                                    <a href="https://www.instagram.com">
-                                        <img 
-                                            src="./assets/images/icons/instagram-icon.png"
-                                            alt="Icon of the instagram and it's link"
-                                            width="19"
-                                            height="19"
-                                        />
-                                    </a>
-                                </li>
-                            </ul>
-                        </address>
-                    </section>
-                </li>
+            <section class="footer__section">
+                <h2 class="heading footer__heading">Useful Links</h2>
 
-                <li>
-                    <section>
-                        <h2>Company</h2>
+                <ul class="list" role="list">
+                    <li>
+                        <a class="link" href="./privacy-policy.html">Privacy Policy</a>
+                    </li>
 
-                        <ul role="list">
-                            <li>
-                                <a href="./women.html">Women</a>
-                            </li>
+                    <li>
+                        <a class="link" href="./shipping-policy.html">Shipping Policy</a>
+                    </li>
 
-                            <li>
-                                <a href="./men.html">Men</a>
-                            </li>
+                    <li>
+                        <a class="link" href="./return-refund-policy.html">Return & Refund Policy</a>
+                    </li>
 
-                            <li>
-                                <a href="./kids.html">Kids</a>
-                            </li>
+                    <li>
+                        <a class="link" href="./terms-of-service.html">Terms of Service </a>
+                    </li>
 
-                            <li>
-                                <a href="./about-us.html">About Us</a>
-                            </li>
+                    <li>
+                        <a class="link" href="./contact-us.html">Contact Us</a>
+                    </li> 
+                </ul>
+            </section>
+        </div>
 
-                            <li>
-                                <a href="./our-materials.html">Our Materials</a>
-                            </li> 
-                        </ul>
-                    </section>
-                </li>
-
-                <li>
-                    <section>
-                        <h2>Useful Links</h2>
-
-                        <ul role="list">
-                            <li>
-                                <a href="./privacy-policy.html">Privacy Policy</a>
-                            </li>
-
-                            <li>
-                                <a href="./shipping-policy.html">Shipping Policy</a>
-                            </li>
-
-                            <li>
-                                <a href="./return-refund-policy.html">Return & Refund Policy</a>
-                            </li>
-
-                            <li>
-                                <a href="./terms-of-service.html">Terms of Service </a>
-                            </li>
-
-                            <li>
-                                <a href="./contact-us.html">Contact Us</a>
-                            </li> 
-                        </ul>
-                    </section>
-                </li>
-            </ul>
-
-            <small>© Susparsa 2021</small>
-        </footer>
-    </div>
+        <small class="footer__copyrights">© Susparsa 2021</small>
+    </footer>
 </body>
 </html>
