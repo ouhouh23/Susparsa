@@ -2,6 +2,7 @@
 	font-family: "Avenir Next Rounded Std";
 	font-weight: 400;
 	src: url("./assets/fonts/AvenirNextRoundedStd-Reg.woff");
+	font-display: swap;
 }
 
 /**
