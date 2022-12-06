@@ -1,7 +1,7 @@
 @font-face {
 	font-family: "Avenir Next Rounded Std";
 	font-weight: 400;
-	src: url("https://susparsa-deploy-yury-andrush.netlify.app/assets/fonts/AvenirNextRoundedStd-Reg.woff");
+	src: url("./assets/fonts/AvenirNextRoundedStd-Reg.woff");
 	font-display: swap;
 }
 
