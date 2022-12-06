@@ -1,7 +1,7 @@
 @font-face {
 	font-family: "Avenir Next Rounded Std";
 	font-weight: 400;
-	src: url("./assets/fonts/AvenirNextRoundedStd-Reg.woff");
+	src: url("https://susparsa-deploy-yury-andrush.netlify.app/assets/fonts/AvenirNextRoundedStd-Reg.woff");
 	font-display: swap;
 }
 
@@ -577,6 +577,11 @@ body {
 	color: var(--font-color-neutral);
 }
 
+.counter__button:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
 .counter__button--increase {
 	order: 3;
 }
@@ -622,6 +627,10 @@ body {
 
 .accordion__body[open] > .accordion__summary::after {
 	display: none;
+}
+
+.accordion__heading {
+	font-size: var(--font-md);
 }
 
 .accordion__content {
