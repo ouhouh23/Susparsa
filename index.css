@@ -305,11 +305,6 @@ body {
 	row-gap: 3rem;
 }
 
-.product__image {
-	width: 100%;
-	aspect-ratio: 0.669;
-}
-
 .product__accordions {
 	margin-top: 3.0625rem;
 }
