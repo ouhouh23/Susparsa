@@ -8,6 +8,8 @@
     <title>Shop template</title>
 
     <link rel="stylesheet" href="./index.css" />
+
+    <script src="./index.js" defer></script>
 </head>
 
 <body>
@@ -54,7 +56,7 @@
 
                 <li>
                     <a class="link" href="./cart.html">
-                        Cart (<span>0</span>)
+                        Cart (<span data-cart-counter>0</span>)
                     </a>
                 </li>
             </ul> 
@@ -85,7 +87,7 @@
         <div class="product__group">
             <section class="description product__description">
                 <header class="description__section description__section--top">
-                    <h1 class="heading description__heading" id="heading-primary">
+                     <h1 class="heading description__heading" id="heading-primary">
                         White unisex t-shirt
                     </h1>
 
@@ -96,7 +98,7 @@
                     <small class="description__note">Tax included</small>
                 </header>
 
-                <form action="#" class="form description__section">
+                <form class="form description__section" data-form>
                     <fieldset class="fieldset form__filter">
                         <legend class="form__legend">Size</legend>
 
@@ -187,9 +189,9 @@
                         </div>
                     </fieldset>
 
-                    <fieldset class="fieldset form__filter form__filter--colored">
+                    <fieldset class="fieldset form__filter form__filter--colored" data-color-group>
                         <legend class="form__legend">
-                            Color - <span class="form__indicator">White</span>
+                            Color - <span data-color>White</span>
                         </legend>
 
                         <div class="form__item form__item--white">
@@ -197,14 +199,15 @@
                                 type="radio" 
                                 name="color-input" 
                                 id="color-white" 
-                                value="white"
+                                value="White"
                                 checked="checked"
-                                class="form__input visually-hidden" 
+                                class="form__input visually-hidden"
+                                data-color-input 
                             />
 
                             <label 
                                 for="color-white"
-                                data-tooltip="White" 
+                                data-tooltip="White"
                                 class="form__label form__label--colored"
                             >
                                 <span class="visually-hidden">White color</span>
@@ -216,8 +219,9 @@
                                 type="radio" 
                                 name="color-input" 
                                 id="color-black" 
-                                value="black"
+                                value="Black"
                                 class="form__input visually-hidden"
+                                data-color-input 
                             />
 
                             <label 
@@ -234,13 +238,14 @@
                                 type="radio" 
                                 name="color-input" 
                                 id="color-gray-latte" 
-                                value="gray-latte"
+                                value="Gray latte"
                                 class="form__input visually-hidden"
+                                data-color-input 
                             />
 
                             <label 
                                 for="color-gray-latte"
-                                data-tooltip="Gray latte" 
+                                data-tooltip="Gray latte"
                                 class="form__label form__label--colored"
                             >
                                 <span class="visually-hidden">Gray latte color</span>
@@ -252,8 +257,9 @@
                                 type="radio" 
                                 name="color-input" 
                                 id="color-purple-latte" 
-                                value="purple-latte"
+                                value="Purple latte"
                                 class="form__input visually-hidden"
+                                data-color-input 
                             />
 
                             <label 
@@ -270,9 +276,10 @@
                                 type="radio" 
                                 name="color-input" 
                                 id="color-pink-latte" 
-                                value="pink-latte"
+                                value="Pink latte"
                                 disabled="disabled"
                                 class="form__input visually-hidden"
+                                data-color-input 
                             />
 
                             <label 
@@ -289,9 +296,10 @@
                                 type="radio" 
                                 name="color-input" 
                                 id="color-orange-latte" 
-                                value="orange-latte"
+                                value="Orange latte"
                                 disabled="disabled"
                                 class="form__input visually-hidden"
+                                data-color-input 
                             />
 
                             <label 
@@ -304,22 +312,21 @@
                         </div>
                     </fieldset>
 
-                    <fieldset class="fieldset counter">
+                    <fieldset data-counter class="fieldset counter">
                         <legend class="form__legend">Quantity</legend>
                         
-                        <input 
+                        <input
+                            data-input 
                             type="number"
                             name="quantity-input" 
-                            value="1" 
-                            min="1" 
-                            class="input-number counter__input" 
+                            class="input-number counter__input"
                         />
 
-                        <button type="button" class="button counter__button counter__button--decrease">
+                        <button type="button" class="button counter__button" data-decrease>
                             −
                         </button>
 
-                        <button type="button" class="button counter__button counter__button--increase">
+                        <button type="button" class="button counter__button counter__button--increase" data-increase>
                             +
                         </button>
                     </fieldset>
@@ -330,6 +337,7 @@
                             name="action" 
                             value="add"
                             class="button form__button form__button--secondary"
+                            data-button-add
                         >
                             Add to card
                         </button>
@@ -337,8 +345,9 @@
                         <button 
                             type="submit" 
                             name="action" 
-                            value="quick-buy"
+                            value="buy"
                             class="button form__button form__button--primary"
+                            data-button-buy
                         >
                             Buy it now
                         </button>
@@ -372,12 +381,16 @@
             </picture>
         </div>
 
-        <ul class="list product__accordions" role="list">
+        <ul class="list product__accordions" role="list" data-details-group>
             <li class="accordion">
                 <details open="open" class="accordion__body">
-                    <summary class="accordion__summary">Sizing & Fit</summary>
+                    <summary class="accordion__summary" data-summary>
+                        <h2 class="heading accordion__heading">
+                            Sizing & Fit
+                        </h2>
+                    </summary>
 
-                    <div class="accordion__content">
+                    <div class="accordion__content" data-details-content>
                         <p class="paragraph">
                             Olga is 175<abbr>cm</abbr>, she is wearing a size <abbr>S</abbr>.
                         </p>
@@ -387,9 +400,13 @@
 
             <li class="accordion">
                 <details class="accordion__body">
-                    <summary class="accordion__summary">Composition & Care</summary>
+                    <summary class="accordion__summary" data-summary>
+                        <h2 class="heading accordion__heading">
+                            Composition & Care
+                        </h2>
+                    </summary>
 
-                    <div class="accordion__content">
+                    <div class="accordion__content" data-details-content>
                         <p class="paragraph">Some text here.</p>
                     </div>
                 </details>
@@ -397,9 +414,13 @@
 
             <li class="accordion">
                 <details class="accordion__body">
-                    <summary class="accordion__summary">Delivery & Returns</summary>
+                    <summary class="accordion__summary" data-summary>
+                        <h2 class="heading accordion__heading">
+                            Delivery & Returns
+                        </h2>
+                    </summary>
 
-                    <div class="accordion__content">
+                    <div class="accordion__content" data-details-content>
                         <p class="paragraph">Some text here.</p>
                     </div>
                 </details> 
@@ -609,7 +630,7 @@
             </li>
         </ul>
     </aside>
-
+    
     <hr class="break" />
 
     <footer class="footer wrapper">
