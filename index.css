@@ -521,8 +521,8 @@ body {
 }
 
 .form__input:focus-visible + .form__label {
-  outline: 1px auto Highlight;
-  outline: 1px auto -webkit-focus-ring-color;
+	outline: 1px auto Highlight;
+	outline: 1px auto -webkit-focus-ring-color;
 }
 
 .form__button-group {
@@ -602,7 +602,7 @@ body {
 }
 
 .accordion__summary::-webkit-details-marker {
-  display: none;
+	display: none;
 }
 
 .accordion__summary::before, 

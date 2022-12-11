@@ -1,6 +1,6 @@
 /*	1. Аккордеон выполнен через тег <details>, поскольку данный тег хорошо стилизуется, имеет нативную
 доступность, навигацию с клавиатуры и механизм переключения. 
-	2.Так как в требованиях к заданию было выполнить в коде реализацию аккордеона, 
+	2. Так как в требованиях к заданию было выполнить в коде реализацию аккордеона, 
 но <details> уже имеет нативную реализацию - в скрипте сделана кастомная реализация через Web Animation API.
 	3. Реализция аккордеона выполнена через два класса: 
  		1. "Управляющий" Accordeon - инициирует механизмы выполнения на элементах аккордеона,
@@ -39,8 +39,8 @@ class Toggle {
 		}]
 
 		const options = {
-		    duration: 400,
-		    easing: 'ease-in'
+			duration: 400,
+			easing: 'ease-in'
 		}
 
 		content.style.overflow = 'hidden'
@@ -51,7 +51,6 @@ class Toggle {
 	expand()  {
 		this.details.open = true
 		this.animation.play()
-
 	}
 
 	collapse() {
@@ -172,40 +171,40 @@ class InputCounter {
 
 		this.element = element
 		this.inputElement = this.element.querySelector('[data-input]');
- 	    this.decreaseElement = this.element.querySelector('[data-decrease]');
- 	    this.increaseElement = this.element.querySelector('[data-increase]');
+		this.decreaseElement = this.element.querySelector('[data-decrease]');
+		this.increaseElement = this.element.querySelector('[data-increase]');
 
- 	    this.initInput()
- 	    this.initEvents()
+		this.initInput()
+		this.initEvents()
 
 	}
 
 	render() {
-	    const value = this.counterValue.getValue()
+		const value = this.counterValue.getValue()
 
-    	this.inputElement.value = value
-    	this.decreaseElement.disabled = (value == this.min)
-    	this.increaseElement.disabled = (value == this.max) 
+		this.inputElement.value = value
+		this.decreaseElement.disabled = (value == this.min)
+		this.increaseElement.disabled = (value == this.max) 
 	}
 
-    initInput() {
-    	this.inputElement.step = this.step
-    	this.inputElement.max = this.max
-    	this.inputElement.min = this.min
+	initInput() {
+		this.inputElement.step = this.step
+		this.inputElement.max = this.max
+		this.inputElement.min = this.min
 
-    	this.render()
-    }
+		this.render()
+	}
 
-    initEvents() {
-    	this.inputElement.addEventListener('change', (event) => {
-    		this.counterValue.setClampedValue(event.target.value)
-    	})
+	initEvents() {
+		this.inputElement.addEventListener('change', (event) => {
+			this.counterValue.setClampedValue(event.target.value)
+		})
 
-	    this.increaseElement.addEventListener('click', this.counterValue.increase.bind(this.counterValue))
-	    this.decreaseElement.addEventListener('click', this.counterValue.decrease.bind(this.counterValue))
+		this.increaseElement.addEventListener('click', this.counterValue.increase.bind(this.counterValue))
+		this.decreaseElement.addEventListener('click', this.counterValue.decrease.bind(this.counterValue))
 
-	    this.counterValue.addEventListener('changedValue', this.render.bind(this))
-    }
+		this.counterValue.addEventListener('changedValue', this.render.bind(this))
+	}
 
 }
 
@@ -222,7 +221,6 @@ class CartCounter {
 
 	render() {
 		this.value = this.cartValue.getValue()
-
 		this.element.innerHTML = this.value
 	}
 
