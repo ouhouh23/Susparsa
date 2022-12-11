@@ -1,15 +1,27 @@
-// Accordeon
+/*	1. Аккордеон выполнен через тег <details>, поскольку данный тег хорошо стилизуется, имеет нативную
+доступность, навигацию с клавиатуры и механизм переключения. 
+	2.Так как в требованиях к заданию было выполнить в коде реализацию аккордеона, 
+но <details> уже имеет нативную реализацию - в скрипте сделана кастомная реализация через Web Animation API.
+	3. Реализция аккордеона выполнена через два класса: 
+ 		1. "Управляющий" Accordeon - инициирует механизмы выполнения на элементах аккордеона,
+ 	закрытие открытых элементов, при необходимости.
+ 		2. Toggle - механизм выполнения, применяемый к элементу аккордеона. Содержит методы для анимации, открытия, закрытия и т.д.
+ 	4. Это не требовалось по заданию, но хотелось, чтобы на странице работали все интерактивные элементы. После аккордеона написаны скрипты 
+для работы счетчика, корзины, формы, выбора цветов.
+ */
+
+// Accordion
 class Toggle {
-	constructor(element, elementsGroup) {
-		this.details = element.parentElement
-		this.detailsGroup = elementsGroup
+	constructor(element) {
+		this.details = element
+		this.summary = this.details.querySelector('[data-summary]')
 
 		this.animation = this.createAnimation()
-		this.initAction()
+		this.animation.cancel()
 	}
 
 	createAnimation() {
-		const content = this.details.querySelector('[data-details-content]')
+		const content = this.details.querySelector('[data-details-collapse]')
 		const contentProperties = window.getComputedStyle(content)
 		const contentHeight = contentProperties.getPropertyValue('height')
 		const contentPadding = contentProperties.getPropertyValue('padding')
@@ -36,32 +48,23 @@ class Toggle {
 		return content.animate(keyframes, options)
 	}
 
+	expand()  {
+		this.details.open = true
+		this.animation.play()
+
+	}
+
 	collapse() {
-		this.animation.reverse()
+		this.animation.playbackRate = -1
+		this.animation.play()
 		this.animation.finished.then(() => {
 			this.details.open = false
+			this.animation.playbackRate = 1
+			this.animation.pause()
 		})
 	}
 
-	collapseSibling() {
-		const detailsOpen = this.detailsGroup.querySelector('[open]')
-
-		if (detailsOpen == null) {
-			return
-		}
-
-		const summaryOpen = detailsOpen.querySelector('[data-summary]')
-
-		const toggle = new Toggle(summaryOpen)
-	}
-
-	expand()  {
-		this.collapseSibling()
-		this.details.open = true
-		this.animation.play()
-	}
-
-	initAction () {
+	initAction() {
 		if (this.details.open) {
 			this.collapse()
 		}
@@ -69,113 +72,43 @@ class Toggle {
 		else {
 			this.expand()
 		}
-	}		
+	}
 }
 
-
-class Accordeon {
+class Accordion {
 	constructor(element) {
-		this.detailsGroup = element
-
-		this.initEvents()
+		this.toggles = Array.from(element.querySelectorAll('[data-details]'), (item) =>
+			new Toggle(item)
+		)
+		this.toggles.forEach(element => {
+			this.initEvents(element)
+		})
 	}
 
-	initEvents() {
-		this.detailsGroup.addEventListener('click', (event) => {
-			this.summary = event.target.closest('[data-summary]')
+	refresh() {
+		const toggleOpened = this.toggles.find(element => element.details.open == true)
+		if (toggleOpened) {
+			toggleOpened.collapse()
+		}
+	}
 
-			if (this.summary) {
-				event.preventDefault()
-				this.toggle = new Toggle(this.summary, this.detailsGroup)
+	initEvents(toggle) {
+		const details = toggle.details
+		const summary = toggle.summary
+
+		summary.addEventListener('click', () => {
+			if (details.open == false) {
+				this.refresh()
 			}
-		})		
+		})
+		summary.addEventListener('click', (event) => {
+			event.preventDefault()
+			toggle.initAction()
+		})
 	}
 }
 
-// const toggle = (summary) => {
-// 	const details = summary.parentElement
-
-// 	const createAnimation = () => {
-
-// 		const content = details.querySelector('[data-details-content]')
-// 		const contentProperties = window.getComputedStyle(content)
-// 		const contentHeight = contentProperties.getPropertyValue('height')
-// 		const contentPadding = contentProperties.getPropertyValue('padding')
-
-// 		const keyframes = [
-// 		{
-// 		    height: 0,
-// 		    padding: 0,
-// 		    opacity: 0
-// 		},
-// 		{
-// 		    height: contentHeight,
-// 		    padding: contentPadding,
-// 		    opacity: 1
-// 		}]
-
-// 		const options = {
-// 		    duration: 400,
-// 		    easing: 'ease-in'
-// 		}
-
-// 		content.style.overflow = 'hidden'
-
-// 		return content.animate(keyframes, options)
-// 	}
-
-// 	const animation = createAnimation()
-
-// 	const collapse = () => {
-// 		console.log('initCollapse')
-// 		animation.reverse()
-// 		animation.finished.then(() => {
-// 			details.open = false
-// 		})
-// 	}
-
-// 	const collapseSibling = () => {
-// 		const detailsOpen = detailsGroup.querySelector('[open]')
-// 		if (detailsOpen == null) {
-// 			return
-// 		}
-
-// 		const summaryOpen = detailsOpen.querySelector('[data-summary]')
-// 		toggle(summaryOpen)
-// }
-
-// 	const expand = () => {
-// 		console.log('initExpand')
-// 		collapseSibling()
-// 		details.open = true
-// 		animation.play()
-// 	}
-
-// 	const initToggle = () => {
-// 		if (details.open) {
-// 			collapse()
-// 		}
-
-// 		else {
-// 			expand()
-// 		}
-// 	}
-
-// 	initToggle()
-// }
-
-// const detailsGroup = document.querySelector('[data-details-group]')
-
-// detailsGroup.addEventListener('click', (event) => {
-// 	const summary = event.target.closest('[data-summary]')
-// 	if (summary) {
-// 		event.preventDefault()
-// 		console.log(summary.parentElement)
-// 		toggle(summary)
-// 	}
-// })
-
-
+// Base class
 class Value {
 	constructor(initilalValue = null, min = -Infinity, max = Infinity) {
 		this.value = initilalValue
@@ -212,6 +145,7 @@ class Value {
 	}
 }
 
+// Counter
 class CounterValue extends Value {
 	constructor(initilalValue = null, step = 1, min = -Infinity, max = Infinity) {
 		super(initilalValue, min, max)
@@ -275,6 +209,7 @@ class InputCounter {
 
 }
 
+// Cart
 class CartCounter {
 	constructor(element, initilalValue = null, min = -Infinity, max = Infinity) {
 		this.cartValue = new Value(initilalValue, min, max)
@@ -302,6 +237,7 @@ class CartCounter {
 	}
 }
 
+// Color pick
 class ColorIndicator {
 	constructor(initilalValue = null, element) {
 		this.colorValue = new Value(initilalValue)
@@ -337,11 +273,13 @@ class ColorIndicator {
 	}
 }
 
+// Form
 class Form {
-	constructor(element) {
+	constructor(element, counter) {
 		this.form = element
 		this.formButtonAdd = this.form.querySelector('[data-button-add]')
 		this.formButtonBuy = this.form.querySelector('[data-button-buy]')
+		this.counter = counter
 
 		this.initEvents()
 	}
@@ -362,13 +300,16 @@ class Form {
 		this.formButtonBuy.addEventListener('click', this.initFormData.bind(this))
 		this.formButtonAdd.addEventListener('click', () => {
 			this.initFormData()
-			cartCounter.acceptValue(this.formQuantityValue)
+			this.counter.acceptValue(this.formQuantityValue)
 		})
 	}
 }
 
-
-const cartCounter = new CartCounter('[data-cart-counter]', 0, 0)
+// Init 
+const cartElement = document.querySelector('[data-cart-counter')
+if (cartElement !== null) {
+	cartCounter = new CartCounter('[data-cart-counter]', 0, 0)
+}
 
 const colorGroups = document.querySelectorAll('[data-color-group]')
 colorGroups.forEach(element => {
@@ -382,10 +323,10 @@ dataCounters.forEach(element => {
 
 const dataForms = document.querySelectorAll('[data-form]')
 dataForms.forEach(element => {
-	const form = new Form(element)
+	const form = new Form(element, cartCounter)
 })
 
-const detailsGroups = document.querySelectorAll('[data-details-group]')
-detailsGroups.forEach(element => {
-	const accordeon = new Accordeon(element)
+const accordions = document.querySelectorAll('[data-accordion]')
+accordions.forEach(element => {
+	const accordion = new Accordion(element)
 })
