@@ -181,7 +181,7 @@ class InputCounter {
 
 	render() {
 		const value = this.counterValue.getValue()
-
+		
 		this.inputElement.value = value
 		this.decreaseElement.disabled = (value == this.min)
 		this.increaseElement.disabled = (value == this.max) 

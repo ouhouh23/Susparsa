@@ -171,6 +171,17 @@ body {
 	overflow: hidden;
 }
 
+.skip-link {
+	position: absolute;
+	left: 0.01625rem;
+	top: -2rem;
+	padding: 0.25rem;
+}
+
+.skip-link:focus {
+	top: 0.01625rem;
+}
+
 .button:hover, .link:hover {
 	opacity: 0.7;
 }
@@ -292,11 +303,22 @@ body {
 }
 
 /**
+ * Main block
+ */
+.main {
+	margin-top: 1.3125rem;
+	padding-top: 1rem;
+}
+
+.main:focus-visible {
+	outline: none;
+}
+
+/**
  * Product block
  */
 .product {
 	max-width: 31.5625rem;
-	margin-top: 2.3125rem;
 }
 
 .product__group {
@@ -674,6 +696,14 @@ body {
 	position: relative;
 }
 
+.card:hover {
+	opacity: 0.8;
+} 
+
+.card:focus-within {
+	opacity: 0.8;
+}
+
 .card__image {
 	width: 100%;
 	aspect-ratio: 0.6739;
@@ -692,6 +722,15 @@ body {
 	height: 100%;
 	left: 0;
 	top: 0;
+}
+
+.card__link:focus-visible {
+	outline: none;
+}
+
+.card__link:focus-visible::before {
+	outline: 1px auto Highlight;
+	outline: 1px auto -webkit-focus-ring-color;
 }
 
 .card__list {
