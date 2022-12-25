@@ -5,13 +5,23 @@
 	font-display: swap;
 }
 
+@font-face {
+	font-family: "Avenir Next Rounded Std";
+	font-weight: 500;
+	src: url("./assets/fonts/AvenirNextRoundedStd-Med.woff");
+	font-display: swap;
+}
+
+
+
 /**
  * Variables
  */
 :root {
 	/* base font-style */
 	--font-basic: "Avenir Next Rounded Std";
-	--weight-basic: 400;
+	--weight-primary: 400;
+	--weight-secondary: 500;
 
 	/* font size */
 	--font-xxl: 1.375rem;
@@ -90,7 +100,7 @@ body {
 	margin: 0;
 	font-family: var(--font-basic), sans-serif;
 	line-height: var(--line-height-md);
-	font-weight: var(--weight-basic);
+	font-weight: var(--weight-primary);
 	color: var(--font-color-dark);
 }
 
@@ -104,7 +114,7 @@ body {
 .heading {
 	margin-top: 0;
 	margin-bottom: 0;
-	font-weight: var(--weight-basic);
+	font-weight: var(--weight-primary);
 }
 
 .paragraph {
@@ -282,16 +292,16 @@ body {
 
 .breadcrumb__item {
 	display: flex;
-	align-items: flex-end;
 	font-size: var(--font-xxs);
 }
 
 .breadcrumb__item::after {
-	content: '/';
+	content: '';
+	width: 0.375rem;
+	height: 0.8125rem;
+	background-image: url("./assets/images/icons/slash.svg");
 	margin-left: 0.625rem;
-	margin-right: 0.5rem;
-	color: var(--font-color-light);
-	font-size: var(--font-sm);
+    margin-right: 0.5rem;
 }
 
 .breadcrumb__item--active {
@@ -323,7 +333,7 @@ body {
 
 .product__group {
 	display: flex;
-	flex-direction: column-reverse;
+	flex-direction: column;
 	row-gap: 3rem;
 }
 
@@ -338,7 +348,7 @@ body {
 
 	.product__group {
 		max-width: 75rem;
-		flex-direction: row-reverse;
+		flex-direction: row;
 		justify-content: space-between;
 	}
 
@@ -518,6 +528,7 @@ body {
 
 .form__input:checked + .form__label {
 	--label-border-color: var(--color-mirage);
+	font-weight: var(--weight-secondary);
 }
 
 .form__input:disabled + .form__label {

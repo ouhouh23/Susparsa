@@ -38,8 +38,9 @@
 
         <a class="header__logo" href="./home.html">
             <img 
-                src="./assets/images/logo.svg" 
-                alt="to the home page" 
+                src="./assets/images/logo.svg"
+                role="img" 
+                alt="To the home page." 
                 width="139" 
                 height="32"
                 class="image header__image" 
@@ -90,6 +91,21 @@
 
     <article aria-labelledby="heading-primary" class="product wrapper">
         <div class="product__group">
+            <picture class="product__illustration">
+                <source
+                    type="image/webp" 
+                    srcset="./assets/images/card-main.webp"
+                />
+
+                <img 
+                    src="./assets/images/card-main.png" 
+                    alt="Image of the selected t-shirt"
+                    width="473" 
+                    height="707"
+                    class="image product__image"
+                />
+            </picture>
+            
             <section class="description product__description">
                 <header class="description__section description__section--top">
                      <h1 class="heading description__heading" id="heading-primary">
@@ -383,21 +399,6 @@
                     </p>
                 </footer>
             </section>
-
-            <picture class="product__illustration">
-                <source
-                    type="image/webp" 
-                    srcset="./assets/images/card-main.webp"
-                />
-
-                <img 
-                    src="./assets/images/card-main.png" 
-                    alt="Image of the selected t-shirt"
-                    width="473" 
-                    height="707"
-                    class="image product__image"
-                />
-            </picture>
         </div>
 
         <ul class="list product__accordion accordion" role="list" data-accordion>
@@ -669,7 +670,8 @@
                             <a href="https://www.facebook.com">
                                 <img 
                                     src="./assets/images/icons/facebook-icon.svg"
-                                    alt="Icon of the facebook and it's link"
+                                    role="img"
+                                    alt="Facebook-account."
                                     width="9"
                                     height="19"
                                     class="image" 
@@ -681,7 +683,8 @@
                             <a href="https://www.instagram.com">
                                 <img 
                                     src="./assets/images/icons/instagram-icon.svg"
-                                    alt="Icon of the instagram and it's link"
+                                    role="img"
+                                    alt="Instagram account."
                                     width="19"
                                     height="19"
                                     class="image" 
