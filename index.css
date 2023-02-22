@@ -476,7 +476,7 @@ body {
 }
 
 .form__input:enabled + .form__label--colored:hover::before {
-	content: attr(data-tooltip);
+	content: attr(data-tooltip) / "";
 }
 
 .form__item {

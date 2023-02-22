@@ -1,330 +1,352 @@
-/*	1. Аккордеон выполнен через тег <details>, поскольку данный тег хорошо стилизуется, имеет нативную
-доступность, навигацию с клавиатуры и механизм переключения. 
-	2. Так как в требованиях к заданию было выполнить в коде реализацию аккордеона, 
-но <details> уже имеет нативную реализацию - в скрипте сделана кастомная реализация через Web Animation API.
-	3. Реализция аккордеона выполнена через два класса: 
- 		1. "Управляющий" Accordeon - инициирует механизмы выполнения на элементах аккордеона,
- 	закрытие открытых элементов, при необходимости.
- 		2. Toggle - механизм выполнения, применяемый к элементу аккордеона. Содержит методы для анимации, открытия, закрытия и т.д.
- 	4. Это не требовалось по заданию, но хотелось, чтобы на странице работали все интерактивные элементы. После аккордеона написаны скрипты 
-для работы счетчика, корзины, формы, выбора цветов.
- */
-
 // Accordion
 class Toggle {
-	constructor(element) {
-		this.details = element
-		this.summary = this.details.querySelector('[data-summary]')
+  constructor(element) {
+    this.details = element;
+    this.details.open = false;
+    this.summary = this.details.querySelector('[data-summary]');
 
-		this.animation = this.createAnimation()
-		this.animation.cancel()
-	}
+    this.eventTarget = new EventTarget();
+    this.createAnimation();
+    this.initEvents();
+  }
 
-	createAnimation() {
-		const content = this.details.querySelector('[data-details-collapse]')
-		const contentProperties = window.getComputedStyle(content)
-		const contentHeight = contentProperties.getPropertyValue('height')
-		const contentPadding = contentProperties.getPropertyValue('padding')
+  dispatchEvent(type, detail) {
+    this.eventTarget.dispatchEvent(new CustomEvent(type, {detail}));
+  }
 
-		const keyframes = [
-		{
-		    height: 0,
-		    padding: 0,
-		    opacity: 0
-		},
-		{
-		    height: contentHeight,
-		    padding: contentPadding,
-		    opacity: 1
-		}]
+  addEventListener(event, callback) {
+    this.eventTarget.addEventListener(event, callback);
+  }
 
-		const options = {
-			duration: 400,
-			easing: 'ease-in'
-		}
+  removeEventListener(event, callback) {
+    this.eventTarget.removeEventListener(event, callback);
+  }
 
-		content.style.overflow = 'hidden'
+  createAnimation() {
+    this.content = this.details.querySelector('[data-details-collapse]');
+    const contentProperties = document.defaultView.getComputedStyle(
+      this.content,
+    );
+    const contentHeight = contentProperties.getPropertyValue('height');
+    const contentPadding = contentProperties.getPropertyValue('padding');
 
-		return content.animate(keyframes, options)
-	}
+    const keyframes = [
+      {
+        height: 0,
+        padding: 0,
+        opacity: 0,
+      },
+      
+      {
+        height: contentHeight,
+        padding: contentPadding,
+        opacity: 1,
+      },
+    ];
 
-	expand()  {
-		this.details.open = true
-		this.animation.play()
-	}
+    const options = {
+      duration: 400,
+      easing: 'ease-in',
+    };
 
-	collapse() {
-		this.animation.playbackRate = -1
-		this.animation.play()
-		this.animation.finished.then(() => {
-			this.details.open = false
-			this.animation.playbackRate = 1
-			this.animation.pause()
-		})
-	}
+    const keyframeEffect = new KeyframeEffect(this.content, keyframes, options);
 
-	initAction() {
-		if (this.details.open) {
-			this.collapse()
-		}
+    this.animation = new Animation(keyframeEffect);
+  }
 
-		else {
-			this.expand()
-		}
-	}
+  updateAnimationHeight() {
+    const animationKeyframes = this.animation.effect.getKeyframes();
+    animationKeyframes[1].height = document.defaultView
+      .getComputedStyle(this.content)
+      .getPropertyValue('height');
+    this.animation.effect.setKeyframes(animationKeyframes);
+  }
+
+  expand() {
+    this.details.open = true;
+    this.animation.play();
+  }
+
+  collapse() {
+    this.animation.reverse();
+    this.animation.finished.then(() => {
+      this.animation.reverse();
+      this.animation.pause();
+      this.details.open = false;
+    });
+  }
+
+  toggleAction() {
+    if (this.animation.playState === 'running') return;
+    this.updateAnimationHeight();
+
+    if (this.details.open) {
+      this.collapse();
+      this.dispatchEvent('toggle:closed');
+    } else {
+      this.expand();
+      this.dispatchEvent('toggle:opened', {target: this});
+    }
+  }
+
+  initEvents() {
+    this.summary.addEventListener('click', (event) => {
+      event.preventDefault();
+      this.toggleAction();
+    });
+  }
 }
 
 class Accordion {
-	constructor(element) {
-		this.toggles = Array.from(element.querySelectorAll('[data-details]'), (item) =>
-			new Toggle(item)
-		)
-		this.toggles.forEach(element => {
-			this.initEvents(element)
-		})
-	}
+  constructor(element) {
+    this.toggles = Array.from(
+      element.querySelectorAll('[data-details]'),
+      (item) => {
+        const toggle = new Toggle(item);
+        this.initEvents(toggle);
+        return toggle;
+      },
+    );
+  }
 
-	refresh() {
-		const toggleOpened = this.toggles.find(element => element.details.open == true)
-		if (toggleOpened) {
-			toggleOpened.collapse()
-		}
-	}
+  refresh(event) {
+    if (this.activeToggleIndex >= 0) {
+      this.toggles[this.activeToggleIndex].collapse();
+    }
 
-	initEvents(toggle) {
-		const details = toggle.details
-		const summary = toggle.summary
+    this.activeToggleIndex = this.toggles.indexOf(event.detail.target);
+  }
 
-		summary.addEventListener('click', () => {
-			if (details.open == false) {
-				this.refresh()
-			}
-		})
-		summary.addEventListener('click', (event) => {
-			event.preventDefault()
-			toggle.initAction()
-		})
-	}
-}
+  resetActiveToggleIndex() {
+    this.activeToggleIndex = -1;
+  }
 
-// Base class
-class Value {
-	constructor(initilalValue = null, min = -Infinity, max = Infinity) {
-		this.value = initilalValue
-		this.min = min
-		this.max = max
+  initEvents(toggle) {
+    toggle.addEventListener('toggle:opened', this.refresh.bind(this));
+    toggle.addEventListener(
+      'toggle:closed',
+      this.resetActiveToggleIndex.bind(this),
+    );
+  }
 
-		this.eventTarget = new EventTarget()
-	}
-
-	dispatchEvent(eventName) {
-		this.eventTarget.dispatchEvent(new Event(eventName))
-	}
-
-	addEventListener(event, callback) {
-		this.eventTarget.addEventListener(event, callback)
-	}
-
-	getValue() {
-		return this.value
-	}
-
-	clamp(value) {
-		return Math.min(Math.max(this.min, value), this.max)
-	}
-
-	setValue(incomeValue) {
-		this.value = incomeValue
-		this.dispatchEvent('changedValue')
-	}
-
-	setClampedValue(incomeValue) {
-		this.value = this.clamp(incomeValue)
-		this.dispatchEvent('changedValue')
-	}
+  destroyEvents() {
+    this.toggles.forEach((element) => {
+      element.removeEventListener('toggle:opened', this.refresh.bind(this));
+      element.removeEventListener(
+        'toggle:closed',
+        this.resetActiveToggleIndex.bind(this),
+      );
+    });
+  }
 }
 
 // Counter
-class CounterValue extends Value {
-	constructor(initilalValue = null, step = 1, min = -Infinity, max = Infinity) {
-		super(initilalValue, min, max)
+class Counter {
+  constructor(initilalValue = null, step = 1, min = -Infinity, max = Infinity) {
+    this.value = initilalValue;
+    this.step = step;
+    this.min = min;
+    this.max = max;
 
-		this.step = step
-	}
+    this.eventTarget = new EventTarget();
+  }
 
-	increase() {
-		this.setClampedValue(this.value + this.step)
-	}
+  dispatchEvent(eventName) {
+    this.eventTarget.dispatchEvent(new Event(eventName));
+  }
 
-	decrease() {
-		this.setClampedValue(this.value - this.step)
-	}
+  addEventListener(event, callback) {
+    this.eventTarget.addEventListener(event, callback);
+  }
+
+  removeEventListener(event, callback) {
+    this.eventTarget.removeEventListener(event, callback);
+  }
+
+  getValue() {
+    return this.value;
+  }
+
+  clamp(value) {
+    return Math.min(Math.max(this.min, value), this.max);
+  }
+
+  setClampedValue(incomeValue) {
+    this.value = this.clamp(incomeValue);
+    this.dispatchEvent('value:changed');
+  }
+
+  increase() {
+    this.setClampedValue(this.value + this.step);
+  }
+
+  decrease() {
+    this.setClampedValue(this.value - this.step);
+  }
 }
 
-class InputCounter {
-	constructor(element, initilalValue = null, step = 1, min = -Infinity, max = Infinity) {
-		this.counterValue = new CounterValue(initilalValue, step, min, max)
+class CounterInput {
+  constructor(
+    element,
+    initilalValue = null,
+    step = 1,
+    min = -Infinity,
+    max = Infinity,
+  ) {
+    this.counter = new Counter(initilalValue, step, min, max);
 
-		this.step = step
-		this.min = min
-		this.max = max	
+    this.step = step;
+    this.min = min;
+    this.max = max;
 
-		this.element = element
-		this.inputElement = this.element.querySelector('[data-input]');
-		this.decreaseElement = this.element.querySelector('[data-decrease]');
-		this.increaseElement = this.element.querySelector('[data-increase]');
+    this.element = element;
+    this.inputElement = this.element.querySelector('[data-input]');
+    this.decreaseElement = this.element.querySelector('[data-decrease]');
+    this.increaseElement = this.element.querySelector('[data-increase]');
 
-		this.initInput()
-		this.initEvents()
+    this.initInput();
+    this.initEvents();
+  }
 
-	}
+  render() {
+    const value = this.counter.getValue();
 
-	render() {
-		const value = this.counterValue.getValue()
-		
-		this.inputElement.value = value
-		this.decreaseElement.disabled = (value == this.min)
-		this.increaseElement.disabled = (value == this.max) 
-	}
+    this.inputElement.value = value;
+    this.decreaseElement.disabled = (value == this.min);
+    this.increaseElement.disabled = (value == this.max);
+  }
 
-	initInput() {
-		this.inputElement.step = this.step
-		this.inputElement.max = this.max
-		this.inputElement.min = this.min
+  initInput() {
+    this.inputElement.step = this.step;
+    this.inputElement.max = this.max;
+    this.inputElement.min = this.min;
 
-		this.render()
-	}
+    this.render();
+  }
 
-	initEvents() {
-		this.inputElement.addEventListener('change', (event) => {
-			this.counterValue.setClampedValue(event.target.value)
-		})
+  initEvents() {
+    this.inputElement.addEventListener('change', (event) => {
+      this.counter.setClampedValue(event.target.value);
+    });
 
-		this.increaseElement.addEventListener('click', this.counterValue.increase.bind(this.counterValue))
-		this.decreaseElement.addEventListener('click', this.counterValue.decrease.bind(this.counterValue))
+    this.increaseElement.addEventListener(
+      'click',
+      this.counter.increase.bind(this.counter),
+    );
+    this.decreaseElement.addEventListener(
+      'click',
+      this.counter.decrease.bind(this.counter),
+    );
 
-		this.counterValue.addEventListener('changedValue', this.render.bind(this))
-	}
+    this.counter.addEventListener('value:changed', this.render.bind(this));
+  }
 
+  destroyEvents() {
+    this.counter.removeEventListener('value:changed', this.render.bind(this));
+  }
 }
 
-// Cart
-class CartCounter {
-	constructor(element, initilalValue = null, min = -Infinity, max = Infinity) {
-		this.cartValue = new Value(initilalValue, min, max)
+//Cart
+class Cart {
+  constructor(element) {
+    this.cart = document.querySelector(element);
+    this.initEvents();
+  }
 
-		this.element = document.querySelector(element)
+  updateCart(event) {
+  	const cartValue = Number(this.cart.innerHTML)
+    const cartIncrement = event.detail.quantity
+    this.cart.innerHTML = cartValue + cartIncrement
+  }
 
-		this.render()
-		this.initEvents()
-	}
+  initEvents() {
+    document.addEventListener('AddItemsToCart', this.updateCart.bind(this));
+  }
 
-	render() {
-		this.value = this.cartValue.getValue()
-		this.element.innerHTML = this.value
-	}
-
-	acceptValue(value) {
-		if (value !== 0) {
-			this.cartValue.setClampedValue(this.value + value)
-		}
-	}
-
-	initEvents() {
-		this.cartValue.addEventListener('changedValue', this.render.bind(this))
-	}
+  destroyEvents() {
+    document.removeEventListener('AddItemsToCart', this.updateCart.bind(this));
+  }
 }
 
-// Color pick
-class ColorIndicator {
-	constructor(initilalValue = null, element) {
-		this.colorValue = new Value(initilalValue)
-
-		this.element = element
-
-		this.setCheckedValue()
-		this.render()
-		this.initEvents()
-	}
-
-	setCheckedValue() {
-		const checkedInput = this.element.querySelector(':checked')
-
-		this.colorValue.setValue(checkedInput.value)
-	}
-
-	render() {
-		const value = this.colorValue.getValue()
-		const elementColor = this.element.querySelector('[data-color]')
-
-		elementColor.innerHTML = value
-	}
-
-	initEvents() {
-		this.element.addEventListener('change', (event) => {
-			if (event.target.closest('[data-color-input]')) {
-				this.setCheckedValue()
-			}
-		})
-
-		this.colorValue.addEventListener('changedValue', this.render.bind(this))
-	}
-}
 
 // Form
 class Form {
-	constructor(element, counter) {
-		this.form = element
-		this.formButtonAdd = this.form.querySelector('[data-button-add]')
-		this.formButtonBuy = this.form.querySelector('[data-button-buy]')
-		this.counter = counter
+  constructor(element) {
+	this.form = element
 
-		this.initEvents()
-	}
+	this.initEvents()
+  }
 
-	initFormData() {
-		this.formData = new FormData(this.form)
+  initFormData() {
+	this.formData = new FormData(this.form)
+	this.formQuantityValue = Number(this.formData.get('quantity-input'))
+  }
 
-		this.formSizeValue = this.formData.get('size-input')
-		this.formColorValue = this.formData.get('color-input')
-		this.formQuantityValue = Number(this.formData.get('quantity-input'))
-	}
+  dispatchQuantity() {
+	const event = new CustomEvent('AddItemsToCart', {
+	  detail: {
+	    quantity: this.formQuantityValue,
+	  },
+	  bubbles: true,
+	  })
+	  this.form.dispatchEvent(event)
+  }
 
-	initEvents() {
-		this.form.addEventListener('submit', (event) => {
-			event.preventDefault()
-		})
-
-		this.formButtonBuy.addEventListener('click', this.initFormData.bind(this))
-		this.formButtonAdd.addEventListener('click', () => {
-			this.initFormData()
-			this.counter.acceptValue(this.formQuantityValue)
-		})
-	}
+  initEvents() {
+	this.form.addEventListener('submit', (event) => {
+	  event.preventDefault()
+	  this.initFormData()
+	  this.dispatchQuantity()
+	})
+  }
 }
 
-// Init 
+// Color pick
+class ColorPicker {
+  constructor(element) {
+	this.element = element
+
+	this.initEvents()
+  }
+
+  setColorValue() {
+	const elementColor = this.element.querySelector('[data-color]')
+	const checkedInput = this.element.querySelector(':checked')
+
+	elementColor.innerHTML = checkedInput.value
+  }
+
+  initEvents() {
+	this.element.addEventListener('change', (event) => {
+	  if (event.target.closest('[data-color-input]')) {
+	    this.setColorValue()
+	  }
+	})
+  }
+}
+
+//Init 
 const cartElement = document.querySelector('[data-cart-counter')
 if (cartElement !== null) {
-	cartCounter = new CartCounter('[data-cart-counter]', 0, 0)
+  cart = new Cart('[data-cart-counter]')
 }
 
 const colorGroups = document.querySelectorAll('[data-color-group]')
 colorGroups.forEach(element => {
-	const colorIndicator = new ColorIndicator(null, element)
+  const colorPicker = new ColorPicker(element)
 })
 
-const dataCounters = document.querySelectorAll('[data-counter]')
-dataCounters.forEach(element => {
-	const inputCounter = new InputCounter(element, 1, 1, 0, 11)
+const counters = document.querySelectorAll('[data-counter]')
+counters.forEach(element => {
+  const counterInput = new CounterInput(element, 1, 1, 0, 11)
 })
 
-const dataForms = document.querySelectorAll('[data-form]')
-dataForms.forEach(element => {
-	const form = new Form(element, cartCounter)
+const forms = document.querySelectorAll('[data-form]')
+forms.forEach(element => {
+  const form = new Form(element)
 })
 
 const accordions = document.querySelectorAll('[data-accordion]')
 accordions.forEach(element => {
-	const accordion = new Accordion(element)
+  const accordion = new Accordion(element)
 })
