@@ -14,7 +14,9 @@
 
 <body>
     <header class="header wrapper">
-        <nav class="header__navigation header__navigation--primary" aria-label="Website navigation">
+        <a href="#main" class="link skip-link">Skip to content.</a>
+
+        <nav class="header__navigation header__navigation--primary" aria-label="Primary">
             <ul class="list header__list header__list--primary" role="list">
                 <li>
                     <a class="link" href="./women.html">Women</a>
@@ -36,15 +38,16 @@
 
         <a class="header__logo" href="./home.html">
             <img 
-                src="./assets/images/logo.svg" 
-                alt="" 
+                src="./assets/images/logo.svg"
+                role="img" 
+                alt="To the home page." 
                 width="139" 
                 height="32"
                 class="image header__image" 
             />
         </a>
 
-        <nav class="header__navigation header__navigation--secondary" aria-label="Personal navigation">
+        <nav class="header__navigation header__navigation--secondary" aria-label="Personal">
             <ul class="list header__list header__list--secondary" role="list">
                 <li>
                     <a class="link" href="./account.html">Account</a>
@@ -55,8 +58,11 @@
                 </li>
 
                 <li>
-                    <a class="link" href="./cart.html">
-                        Cart (<span data-cart-counter>0</span>)
+                    <a class="link" aria-labelledby="cart-status" href="./cart.html">
+                        <span role="status" id="cart-status" aria-live="polite">
+                            <span class="visually-hidden">Items in</span>
+                                Cart (<span data-cart-counter>0</span>)
+                        </span>
                     </a>
                 </li>
             </ul> 
@@ -81,13 +87,28 @@
         </ol>
     </nav>
 
-    <main>
+    <main id="main" class="main" tabindex="-1">
 
-    <article aria-labelledby="heading-primary" class="product wrapper">
+    <article class="product wrapper">
         <div class="product__group">
+            <picture class="product__illustration">
+                <source
+                    type="image/webp" 
+                    srcset="./assets/images/card-main.webp"
+                />
+
+                <img 
+                    src="./assets/images/card-main.png" 
+                    alt="Image of the selected t-shirt"
+                    width="473" 
+                    height="707"
+                    class="image product__image"
+                />
+            </picture>
+            
             <section class="description product__description">
                 <header class="description__section description__section--top">
-                     <h1 class="heading description__heading" id="heading-primary">
+                     <h1 class="heading description__heading">
                         White unisex t-shirt
                     </h1>
 
@@ -98,7 +119,7 @@
                     <small class="description__note">Tax included</small>
                 </header>
 
-                <form class="form description__section" data-form>
+                <form action="#" class="form description__section" data-form>
                     <fieldset class="fieldset form__filter">
                         <legend class="form__legend">Size</legend>
 
@@ -191,7 +212,7 @@
 
                     <fieldset class="fieldset form__filter form__filter--colored" data-color-group>
                         <legend class="form__legend">
-                            Color - <span data-color>White</span>
+                            Color - <span data-color aria-hidden="true">White</span>
                         </legend>
 
                         <div class="form__item form__item--white">
@@ -210,7 +231,7 @@
                                 data-tooltip="White"
                                 class="form__label form__label--colored"
                             >
-                                <span class="visually-hidden">White color</span>
+                                <span class="visually-hidden">White</span>
                             </label>
                         </div>
 
@@ -229,7 +250,7 @@
                                 data-tooltip="Black"
                                 class="form__label form__label--colored"
                             >
-                                <span class="visually-hidden">Black color</span>
+                                <span class="visually-hidden">Black</span>
                             </label>
                         </div>
 
@@ -248,7 +269,7 @@
                                 data-tooltip="Gray latte"
                                 class="form__label form__label--colored"
                             >
-                                <span class="visually-hidden">Gray latte color</span>
+                                <span class="visually-hidden">Gray latte</span>
                             </label>
                         </div>
 
@@ -267,7 +288,7 @@
                                 data-tooltip="Purple latte"
                                 class="form__label form__label--colored"
                             >
-                                <span class="visually-hidden">Purple latte color</span>
+                                <span class="visually-hidden">Purple latte</span>
                             </label>
                         </div>
 
@@ -287,7 +308,7 @@
                                 data-tooltip="Pink latte"
                                 class="form__label form__label--colored"
                             >
-                                <span class="visually-hidden">Pink latte color</span>
+                                <span class="visually-hidden">Pink latte</span>
                             </label>
                         </div>
 
@@ -307,7 +328,7 @@
                                 data-tooltip="Orange latte"
                                 class="form__label form__label--colored"
                             >
-                                <span class="visually-hidden">Orange latte color</span>
+                                <span class="visually-hidden">Orange latte</span>
                             </label>
                         </div>
                     </fieldset>
@@ -320,13 +341,27 @@
                             type="number"
                             name="quantity-input" 
                             class="input-number counter__input"
+                            aria-label="items quantity"
+                            aria-live="polite"
+                            aria-atomic="true"
+
                         />
 
-                        <button type="button" class="button counter__button" data-decrease>
+                        <button
+                            data-decrease
+                            type="button"
+                            class="button counter__button"
+                            aria-label="Decrease"
+                        > 
                             −
                         </button>
 
-                        <button type="button" class="button counter__button counter__button--increase" data-increase>
+                        <button
+                            data-increase
+                            type="button" 
+                            class="button counter__button counter__button--increase"
+                            aria-label="Increase"
+                        >
                             +
                         </button>
                     </fieldset>
@@ -337,7 +372,6 @@
                             name="action" 
                             value="add"
                             class="button form__button form__button--secondary"
-                            data-button-add
                         >
                             Add to card
                         </button>
@@ -347,7 +381,6 @@
                             name="action" 
                             value="buy"
                             class="button form__button form__button--primary"
-                            data-button-buy
                         >
                             Buy it now
                         </button>
@@ -364,21 +397,6 @@
                     </p>
                 </footer>
             </section>
-
-            <picture class="product__illustration">
-                <source
-                    type="image/webp" 
-                    srcset="./assets/images/card-main.webp"
-                />
-
-                <img 
-                    src="./assets/images/card-main.png" 
-                    alt="Image of the selected t-shirt"
-                    width="473" 
-                    height="707"
-                    class="image product__image"
-                />
-            </picture>
         </div>
 
         <ul class="list product__accordion accordion" role="list" data-accordion>
@@ -430,13 +448,13 @@
     </main>
 
     <aside aria-labelledby="heading-secondary" class="aside wrapper">
-        <h2 id="heading-secondary" class="heading aside__heading">
+        <h2 class="heading aside__heading">
             You may also like
         </h2>
 
         <ul class="list cards" role="list">
             <li>
-                <article aria-labelledby="card-heading-1" class="card">
+                <article class="card">
                     <picture>
                         <source
                             type="image/webp" 
@@ -452,7 +470,7 @@
                         />
                     </picture>
 
-                    <h3 class="heading card__heading" id="card-heading-1">
+                    <h3 class="heading card__heading">
                         <a class="link card__link" href="./product-1.html">
                             Product name
                         </a>
@@ -483,7 +501,7 @@
             </li>
 
             <li>
-                <article aria-labelledby="card-heading-2" class="card">
+                <article class="card">
                     <picture>
                         <source
                             type="image/webp" 
@@ -499,7 +517,7 @@
                         />
                     </picture>
 
-                    <h3 class="heading card__heading" id="card-heading-2">
+                    <h3 class="heading card__heading">
                         <a class="link card__link" href="./product-2.html">
                             Product name
                         </a>
@@ -530,7 +548,7 @@
             </li>
 
             <li>
-                <article aria-labelledby="card-heading-3" class="card">
+                <article class="card">
                     <ul class="list tags card__tags" role="list">
                         <li class="tags__item">
                             <span>Sold out</span>
@@ -552,7 +570,7 @@
                         />
                     </picture>
 
-                    <h3 class="heading card__heading" id="card-heading-3">
+                    <h3 class="heading card__heading">
                         <a class="link card__link" href="./product-3.html">
                             Product name
                         </a>
@@ -583,7 +601,7 @@
             </li>
 
             <li>
-                <article aria-labelledby="card-heading-4" class="card">
+                <article class="card">
                     <picture>
                         <source
                             type="image/webp" 
@@ -599,7 +617,7 @@
                         />
                     </picture>
 
-                    <h3 class="heading card__heading" id="card-heading-4">
+                    <h3 class="heading card__heading">
                         <a class="link card__link" href="./product-4.html">
                             Product name
                         </a>
@@ -650,7 +668,8 @@
                             <a href="https://www.facebook.com">
                                 <img 
                                     src="./assets/images/icons/facebook-icon.svg"
-                                    alt="Icon of the facebook and it's link"
+                                    role="img"
+                                    alt="Facebook-account."
                                     width="9"
                                     height="19"
                                     class="image" 
@@ -662,7 +681,8 @@
                             <a href="https://www.instagram.com">
                                 <img 
                                     src="./assets/images/icons/instagram-icon.svg"
-                                    alt="Icon of the instagram and it's link"
+                                    role="img"
+                                    alt="Instagram account."
                                     width="19"
                                     height="19"
                                     class="image" 
